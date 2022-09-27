@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3088362758644099022}
   - component: {fileID: 6534320044627329212}
   m_Layer: 0
-  m_Name: Wall
-  m_TagString: Wall
+  m_Name: RightWall
+  m_TagString: RightWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
