@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isOnTheGround = false;
+        isOnTheGround = true;
     }
 
     private void Update()
@@ -27,11 +27,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
             isOnTheGround = false;
         }
+    }
+
+    public bool GetIsOnTheGround()
+    {
+        return isOnTheGround;
     }
 }
