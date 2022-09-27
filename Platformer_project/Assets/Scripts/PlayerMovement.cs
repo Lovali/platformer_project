@@ -4,11 +4,21 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private Vector2 moveVal;
+
     [SerializeField] private float moveSpeed;
     private bool jumpPressed;
     private bool againstLeftWall = false;
     private bool againstRightWall = false;
 
+    public float jumpForce = 10;
+    public float gravity = -5f;
+    float velocity;
+
+    PlayerController playerController;
+    private void Awake()
+    {
+        playerController = gameObject.GetComponent<PlayerController>();
+    }
     void OnMove(InputValue value)
     {
         moveVal = value.Get<Vector2>();
@@ -22,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         transform.Translate(new Vector3(moveVal.x, 0, 0) * moveSpeed * Time.deltaTime);
+
         if (againstLeftWall)
         {
             transform.Translate(new Vector3(1, 0, 0) * moveSpeed * Time.deltaTime);
@@ -30,10 +41,19 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.Translate(new Vector3(-1, 0, 0) * moveSpeed * Time.deltaTime);
         }
-        if (jumpPressed)
+
+        velocity += gravity * Time.deltaTime;
+
+        if (playerController.GetIsOnTheGround() && velocity < 0)
         {
-            transform.Translate(new Vector3(0, 1, 0) * moveSpeed * Time.deltaTime);
+            velocity = 0;
         }
+
+        if (playerController.GetIsOnTheGround() && jumpPressed)
+        {
+            velocity = jumpForce;
+        }
+        transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
