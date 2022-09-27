@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isOnTheGround = true;
+        isOnTheGround = false;
     }
 
     private void Update()
