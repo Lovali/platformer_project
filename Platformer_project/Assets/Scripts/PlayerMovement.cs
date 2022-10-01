@@ -9,10 +9,11 @@ public class PlayerMovement : MonoBehaviour
     private bool jumpPressed;
     private bool againstLeftWall = false;
     private bool againstRightWall = false;
+    private bool canDoubleJump = false;
 
     public float jumpForce = 10;
     public float gravity = -5f;
-    float velocity;
+    private float velocity;
 
     PlayerController playerController;
     private void Awake()
@@ -49,9 +50,20 @@ public class PlayerMovement : MonoBehaviour
             velocity = 0;
         }
 
-        if (playerController.GetIsOnTheGround() && jumpPressed)
+        if (jumpPressed)
         {
-            velocity = jumpForce;
+            if (playerController.GetIsOnTheGround())
+            {
+                canDoubleJump = true;
+                velocity = jumpForce;
+                return;
+            }
+            else if (canDoubleJump)
+            {
+                canDoubleJump = false;
+                velocity = jumpForce;
+                return;
+            }
         }
         transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
     }
