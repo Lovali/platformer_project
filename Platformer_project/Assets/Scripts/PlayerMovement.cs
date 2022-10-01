@@ -32,15 +32,19 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(new Vector3(moveVal.x, 0, 0) * moveSpeed * Time.deltaTime);
+        /*transform.Translate(new Vector3(moveVal.x, 0, 0) * moveSpeed * Time.deltaTime);
 
         if (againstLeftWall)
         {
             transform.Translate(new Vector3(1, 0, 0) * moveSpeed * Time.deltaTime);
         }
-        if (againstRightWall)
+        else if (againstRightWall)
         {
             transform.Translate(new Vector3(-1, 0, 0) * moveSpeed * Time.deltaTime);
+        }*/
+        if ((againstLeftWall && moveVal.x > 0) || (againstRightWall && moveVal.x < 0) || (!againstRightWall && !againstLeftWall))
+        {
+            transform.Translate(new Vector3(moveVal.x, 0, 0) * moveSpeed * Time.deltaTime);
         }
 
         velocity += gravity * Time.deltaTime;
