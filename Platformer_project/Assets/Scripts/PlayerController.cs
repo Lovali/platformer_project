@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private bool isOnTheGround;
-    // Start is called before the first frame update
+    
     void Start()
     {
         isOnTheGround = false;
