@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private Vector2 moveVal;
+    private bool isOnTheGround = false;
 
     [SerializeField] private float moveSpeed;
     private bool jumpPressed;
@@ -13,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float jumpForce = 10;
     [SerializeField] private float gravity = -5f;
-    private float velocity;
+    [SerializeField] private float velocity;
 
     [SerializeField] private float dashForce = 3;
     private bool dashPressed;
@@ -21,11 +22,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float sprintMultiplier = 3;
     private bool sprintPressed;
 
-    PlayerController playerController;
-    private void Awake()
-    {
-        playerController = gameObject.GetComponent<PlayerController>();
-    }
+    [SerializeField] private bool isWallSliding = false;
+    [SerializeField] private float wallSlidingSpeed = -5;
+
     void OnMove(InputValue value)
     {
         moveVal = value.Get<Vector2>();
@@ -76,31 +75,9 @@ public class PlayerMovement : MonoBehaviour
             }            
         }
 
-        /*transform.Translate(new Vector3(moveVal.x, 0, 0) * moveSpeed * Time.deltaTime);
-
-        if (againstLeftWall)
-        {
-            transform.Translate(new Vector3(1, 0, 0) * moveSpeed * Time.deltaTime);
-        }
-        else if (againstRightWall)
-        {
-            transform.Translate(new Vector3(-1, 0, 0) * moveSpeed * Time.deltaTime);
-        }*/
-        if ((againstLeftWall && moveVal.x > 0) || (againstRightWall && moveVal.x < 0) || (!againstRightWall && !againstLeftWall))
-        {
-            transform.Translate(new Vector3(moveVal.x, 0, 0) * moveSpeed * Time.deltaTime);
-        }
-
-        velocity += gravity * Time.deltaTime;
-
-        if (playerController.GetIsOnTheGround() && velocity < 0)
-        {
-            velocity = 0;
-        }
-
         if (jumpPressed)
         {
-            if (playerController.GetIsOnTheGround())
+            if (isOnTheGround)
             {
                 canDoubleJump = true;
                 velocity = jumpForce;
@@ -113,6 +90,31 @@ public class PlayerMovement : MonoBehaviour
                 return;
             }
         }
+
+        if ((againstLeftWall || againstRightWall) && !isOnTheGround)
+        {
+            isWallSliding = true;
+        }
+        else
+        {
+            isWallSliding = false;
+        }
+
+        if (isWallSliding)
+        {
+            if (velocity > 0 && !jumpPressed) velocity = 0;
+            velocity += wallSlidingSpeed * Time.deltaTime;
+        }
+        else
+        {
+            velocity += gravity * Time.deltaTime;
+        }
+
+        if (isOnTheGround && velocity < 0)
+        {
+            velocity = 0;
+        }
+
         transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
     }
 
@@ -126,6 +128,10 @@ public class PlayerMovement : MonoBehaviour
         {
             againstRightWall = true;
         }
+        if (collision.gameObject.tag == "Ground")
+        {
+            isOnTheGround = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -137,6 +143,10 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "RightWall")
         {
             againstRightWall = false;
+        }
+        if (collision.gameObject.tag == "Ground")
+        {
+            isOnTheGround = false;
         }
     }
 }

@@ -184,11 +184,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
       propertyPath: gravity
-      value: -10
+      value: -18
       objectReference: {fileID: 0}
     - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
       propertyPath: jumpForce
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
+      propertyPath: moveSpeed
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
