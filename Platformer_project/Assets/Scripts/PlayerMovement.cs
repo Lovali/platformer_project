@@ -94,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
         if ((againstLeftWall || againstRightWall) && !isOnTheGround)
         {
             isWallSliding = true;
+            canDoubleJump = true;
         }
         else
         {
