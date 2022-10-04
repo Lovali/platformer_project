@@ -180,5 +180,8 @@ MonoBehaviour:
   moveSpeed: 10
   jumpForce: 10
   gravity: -5
+  velocity: 0
   dashForce: 5
   sprintMultiplier: 3
+  isWallSliding: 0
+  wallSlidingSpeed: -5

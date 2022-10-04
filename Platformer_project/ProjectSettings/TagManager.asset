@@ -8,6 +8,7 @@ TagManager:
   - LeftWall
   - RightWall
   - Platform
+  - Ceil
   layers:
   - Default
   - TransparentFX

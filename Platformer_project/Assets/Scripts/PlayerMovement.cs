@@ -132,6 +132,10 @@ public class PlayerMovement : MonoBehaviour
         {
             isOnTheGround = true;
         }
+        if (collision.gameObject.tag == "Ceil")
+        {
+            velocity = 0;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
