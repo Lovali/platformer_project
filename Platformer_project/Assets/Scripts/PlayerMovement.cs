@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         sprintPressed = value.isPressed;
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         if (dashPressed)
         {
@@ -61,8 +61,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.Translate(dash);
             }
+            dashPressed = false;
         }
+    }
 
+    void Update()
+    {
         if ((againstLeftWall && moveVal.x > 0) || (againstRightWall && moveVal.x < 0) || (!againstRightWall && !againstLeftWall))
         {
             if(sprintPressed)
