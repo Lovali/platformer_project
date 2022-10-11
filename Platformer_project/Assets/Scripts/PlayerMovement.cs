@@ -142,6 +142,10 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity = 0;
         }
+        if (collision.gameObject.tag == "Bouncing")
+        {
+            velocity = 12.5f;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)

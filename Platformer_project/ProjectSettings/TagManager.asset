@@ -9,6 +9,7 @@ TagManager:
   - RightWall
   - Platform
   - Ceil
+  - Bouncing
   layers:
   - Default
   - TransparentFX
