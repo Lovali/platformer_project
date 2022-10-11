@@ -136,6 +136,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             isOnTheGround = true;
+            transform.parent = collision.gameObject.transform;
         }
         if (collision.gameObject.tag == "Ceil")
         {
@@ -156,6 +157,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             isOnTheGround = false;
+            transform.parent = null;
         }
     }
 }
