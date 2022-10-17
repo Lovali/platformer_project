@@ -10,6 +10,7 @@ TagManager:
   - Platform
   - Ceil
   - Bouncing
+  - Slowing
   layers:
   - Default
   - TransparentFX

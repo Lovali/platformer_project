@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 moveVal;
     private bool isOnTheGround = false;
+    private bool isSlowed = false;
+    [SerializeField] private float slowForce = 2;
 
     [SerializeField] private float moveSpeed;
     private bool jumpPressed;
@@ -17,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 10;
     [SerializeField] private float gravity = -5f;
     [SerializeField] private float velocity;
+    [SerializeField] private float horizontalVelocity;
 
     [SerializeField] private float dashForce = 3;
     private bool dashPressed;
@@ -78,12 +81,18 @@ public class PlayerMovement : MonoBehaviour
         {
             if(sprintPressed)
             {
-                transform.Translate(new Vector3(moveVal.x * sprintMultiplier, 0, 0) * moveSpeed * Time.deltaTime);
+                horizontalVelocity = sprintMultiplier * moveSpeed;
             }
             else
             {
-                transform.Translate(new Vector3(moveVal.x, 0, 0) * moveSpeed * Time.deltaTime);
-            }            
+                horizontalVelocity = moveSpeed;
+                
+            }
+            if(isSlowed)
+            {
+                horizontalVelocity /= slowForce;
+            }
+            transform.Translate(new Vector3(moveVal.x * horizontalVelocity, 0, 0) * Time.deltaTime);
         }
 
         if (jumpPressed)
@@ -153,6 +162,10 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity = 12.5f;
         }
+        if (collision.gameObject.tag == "Slowing")
+        {
+            isSlowed = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -169,6 +182,10 @@ public class PlayerMovement : MonoBehaviour
         {
             isOnTheGround = false;
             transform.parent = null;
+        }
+        if(collision.gameObject.tag == "Slowing")
+        {
+            isSlowed = false;
         }
     }
 }
