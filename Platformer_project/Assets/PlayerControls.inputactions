@@ -11,7 +11,7 @@
                     "id": "e250b375-cc67-454c-86b5-84eabaee55d1",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": true
                 },
                 {
@@ -54,6 +54,15 @@
                     "name": "Sprint",
                     "type": "Value",
                     "id": "ecc8e5bf-63d2-42a6-bafd-0960e334c7b0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Pause",
+                    "type": "Value",
+                    "id": "26e4298f-0b65-43ec-b69d-7d2ccaa16a5f",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -311,6 +320,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86f1b043-7f79-41bf-bf11-1a60c0591940",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

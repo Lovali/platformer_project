@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] PauseMenu pauseMenu;
+
     private Vector2 moveVal;
     private bool isOnTheGround = false;
 
@@ -24,6 +26,11 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private bool isWallSliding = false;
     [SerializeField] private float wallSlidingSpeed = -5;
+
+    void OnPause(InputValue value)
+    {
+        pauseMenu.pausePressed = value.isPressed;
+    }
 
     void OnMove(InputValue value)
     {
