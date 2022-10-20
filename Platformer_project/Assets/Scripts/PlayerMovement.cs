@@ -27,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float sprintMultiplier = 3;
     private bool sprintPressed;
 
+    [SerializeField] private bool goDownPressed;
+    private GameObject traversablePlatformGameObject;
+
     [SerializeField] private bool isWallSliding = false;
     [SerializeField] private float wallSlidingSpeed = -5;
 
@@ -53,6 +56,11 @@ public class PlayerMovement : MonoBehaviour
     void OnSprint(InputValue value)
     {
         sprintPressed = value.isPressed;
+    }
+
+    void OnGoDown(InputValue value)
+    {
+        goDownPressed = value.isPressed;
     }
 
     private void FixedUpdate()
@@ -166,26 +174,52 @@ public class PlayerMovement : MonoBehaviour
         {
             isSlowed = true;
         }
+        if (collision.gameObject.tag == "Traversable")
+        {
+            isOnTheGround = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "LeftWall")
+        if (collision.gameObject.CompareTag("LeftWall"))
         {
             againstLeftWall = false;
         }
-        if (collision.gameObject.tag == "RightWall")
+        if (collision.gameObject.CompareTag("RightWall"))
         {
             againstRightWall = false;
         }
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground"))
         {
             isOnTheGround = false;
             transform.parent = null;
         }
-        if(collision.gameObject.tag == "Slowing")
+        if (collision.gameObject.CompareTag("Slowing"))
         {
             isSlowed = false;
         }
+        if (collision.gameObject.CompareTag("Traversable"))
+        {
+            isOnTheGround = false;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Traversable"))
+        {
+            if (goDownPressed)
+            {
+                traversablePlatformGameObject = collision.gameObject;
+                Down();
+                Invoke(nameof(Down), 0.5f);
+            }
+        }
+    }
+
+    private void Down()
+    {
+        traversablePlatformGameObject.GetComponent<Collider2D>().enabled = !traversablePlatformGameObject.GetComponent<Collider2D>().enabled;
     }
 }
