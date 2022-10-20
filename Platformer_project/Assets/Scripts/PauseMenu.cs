@@ -1,10 +1,12 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused = false;
     [SerializeField] GameObject pauseMenuUI;
+    [SerializeField] GameObject controlsMenuUI;
     public bool pausePressed;
 
     void Update()
@@ -19,6 +21,10 @@ public class PauseMenu : MonoBehaviour
             {
                 Paused();
             }
+        }
+        if(controlsMenuUI.activeSelf)
+        {
+            InputSystem.onAnyButtonPress.CallOnce(ctrl => controlsMenuUI.SetActive(false));
         }
     }
 
@@ -37,6 +43,6 @@ public class PauseMenu : MonoBehaviour
     }
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        controlsMenuUI.SetActive(true);
     }
 }

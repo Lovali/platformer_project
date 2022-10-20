@@ -17,13 +17,14 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        UpdateHealthUI();
-
+        
         if(currentHealth <= 0)
         {
+            currentHealth = 0;
             Die();
-            return;
         }
+
+        UpdateHealthUI();
     }
 
     private void UpdateHealthUI()

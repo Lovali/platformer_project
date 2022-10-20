@@ -326,10 +326,21 @@
                 {
                     "name": "",
                     "id": "86f1b043-7f79-41bf-bf11-1a60c0591940",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "07373083-72c4-438c-bcc4-e5f5f06f8daa",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
