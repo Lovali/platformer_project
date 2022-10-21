@@ -181,7 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
   slowForce: 2
-  moveSpeed: 15
+  maxMoveSpeed: 20
   jumpForce: 12
   gravity: -16
   velocity: 0
@@ -191,7 +191,7 @@ MonoBehaviour:
   goDownPressed: 0
   isWallSliding: 0
   wallSlidingSpeed: -5
-  dust: {fileID: 0}
+  dust: {fileID: 188242925946422260}
 --- !u!114 &8758127287085161555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +206,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPointsText: {fileID: 0}
   defeatText: {fileID: 0}
+  defeatCanvas: {fileID: 0}
+  eventSystem: {fileID: 0}
+  mainMenuButton: {fileID: 0}
 --- !u!1 &8799537430203248726
 GameObject:
   m_ObjectHideFlags: 0
