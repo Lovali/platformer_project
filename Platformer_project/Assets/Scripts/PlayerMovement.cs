@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class PlayerMovement : MonoBehaviour
     private bool canDoubleJump = false;
 
     [SerializeField] private float jumpForce = 13;
+    [SerializeField] private float maxJumpForce = 20;
+    private float jumpBoosted;
+    private float jumpBoostRate;
+
     [SerializeField] private float gravity = -18f;
     [SerializeField] private float velocity;
     [SerializeField] private float horizontalVelocity;
@@ -39,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float wallSlidingSpeed = -5;
 
     [SerializeField] private ParticleSystem dust;
+    [SerializeField] private Slider jumpSlider;
 
     void OnPause(InputValue value)
     {
@@ -74,6 +80,10 @@ public class PlayerMovement : MonoBehaviour
     {
         acceleration = maxMoveSpeed / accelerationRate;
         deceleration = maxMoveSpeed / decelerationRate;
+        jumpBoosted = jumpForce;
+        jumpBoostRate = (maxJumpForce - jumpForce) / 100;
+        jumpSlider.minValue = jumpForce;
+        jumpSlider.maxValue = maxJumpForce;
     }
     private void FixedUpdate()
     {
@@ -159,7 +169,13 @@ public class PlayerMovement : MonoBehaviour
             if (isOnTheGround)
             {
                 canDoubleJump = true;
-                velocity = jumpForce;
+                jumpBoosted += jumpBoostRate;
+                jumpSlider.value = jumpBoosted;
+                if (jumpBoosted > maxJumpForce)
+                {
+                    jumpBoosted = maxJumpForce;
+                }
+                velocity = jumpBoosted;
                 return;
             }
             else if (canDoubleJump)
@@ -168,6 +184,11 @@ public class PlayerMovement : MonoBehaviour
                 velocity = jumpForce;
                 return;
             }
+        }
+        else
+        {
+            jumpBoosted = jumpForce;
+            jumpSlider.value = jumpForce;
         }
 
         if ((againstLeftWall || againstRightWall) && !isOnTheGround)
