@@ -35,6 +35,11 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         gameIsPaused = false;
     }
+
+    public void ShowControlsMenu()
+    {
+        controlsMenuUI.SetActive(true);
+    }
     public void LoadMainMenu()
     {
         Time.timeScale = 1;

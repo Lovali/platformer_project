@@ -590,6 +590,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 691055554}
     - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
+      propertyPath: slowForce
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
       propertyPath: jumpSlider
       value: 
       objectReference: {fileID: 2106863436}
@@ -791,6 +795,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 81454743, guid: acb1ddeb457543947a4a13e246088b8f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 255158158, guid: acb1ddeb457543947a4a13e246088b8f, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -799,6 +807,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 691055554}
+    - target: {fileID: 943273491, guid: acb1ddeb457543947a4a13e246088b8f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 943273491, guid: acb1ddeb457543947a4a13e246088b8f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -100
+      objectReference: {fileID: 0}
     - target: {fileID: 943273492, guid: acb1ddeb457543947a4a13e246088b8f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -947,6 +963,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 193.93997
       objectReference: {fileID: 0}
+    - target: {fileID: 7603086336029149457, guid: acb1ddeb457543947a4a13e246088b8f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 691055554}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acb1ddeb457543947a4a13e246088b8f, type: 3}
 --- !u!1 &5269348391467935309 stripped
