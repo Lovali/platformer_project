@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class PlayerHealth : MonoBehaviour
     int currentHealth;
     [SerializeField] Text healthPointsText;
     [SerializeField] Text defeatText;
+    [SerializeField] GameObject defeatCanvas;
+    [SerializeField] EventSystem eventSystem;
+    [SerializeField] GameObject mainMenuButton;
 
     void Start()
     {
@@ -35,6 +39,8 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         defeatText.text = "You are dead...";
-        defeatText.gameObject.SetActive(true);
+        eventSystem.SetSelectedGameObject(mainMenuButton);
+        Time.timeScale = 0;
+        defeatCanvas.SetActive(true);
     }
 }

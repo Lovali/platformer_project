@@ -14,7 +14,7 @@ public class PauseMenu : MonoBehaviour
     {
         if(pausePressed)
         {
-                Paused();
+            Paused();
         }
         if(controlsMenuUI.activeSelf)
         {
@@ -37,6 +37,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void LoadMainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 }

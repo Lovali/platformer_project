@@ -17,7 +17,7 @@ public class Damage : MonoBehaviour
         {
             playerHealth.TakeDamage(damage);
             ChangeColor();
-            Invoke(nameof(ChangeColor), 0.25f);
+            Invoke(nameof(ChangeColor), 0.2f);
         }
     }
 
