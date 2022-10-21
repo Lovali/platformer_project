@@ -374,6 +374,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd437b11fdcf8c6418af579265271959, type: 3}
+--- !u!1 &942164705 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2557925630786815819, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
+  m_PrefabInstance: {fileID: 1746630741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1019858434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -492,25 +497,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 725e78f3c7b80484e85aa21d4826d6ab, type: 3}
---- !u!1 &1126057445 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2557925630786815819, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
-  m_PrefabInstance: {fileID: 1746630741}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1126057452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1126057445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54e0dbe76d088764e85a0883b4760484, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthPointsText: {fileID: 1406005044}
-  defeatText: {fileID: 692398167}
 --- !u!114 &1406005044 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1406005044, guid: acb1ddeb457543947a4a13e246088b8f, type: 3}
@@ -578,11 +564,40 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
-      propertyPath: pauseMenu
+      propertyPath: dust
       value: 
-      objectReference: {fileID: 691055554}
+      objectReference: {fileID: 1746630742}
+    - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
+      propertyPath: gravity
+      value: -18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
+      propertyPath: jumpForce
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
+      propertyPath: maxMoveSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
+      propertyPath: sprintMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758127287085161555, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
+      propertyPath: defeatText
+      value: 
+      objectReference: {fileID: 692398167}
+    - target: {fileID: 8758127287085161555, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
+      propertyPath: healthPointsText
+      value: 
+      objectReference: {fileID: 1406005044}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
+--- !u!198 &1746630742 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 188242925946422260, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
+  m_PrefabInstance: {fileID: 1746630741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2115931473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1013,9 +1028,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8899018393222398364, guid: f7bf1c3a0f1a863488806cfc045ab09d, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 942164705}
+    - target: {fileID: 8899018393222398364, guid: f7bf1c3a0f1a863488806cfc045ab09d, type: 3}
       propertyPath: playerHealth
       value: 
-      objectReference: {fileID: 1126057452}
+      objectReference: {fileID: 0}
     - target: {fileID: 8899018393272653451, guid: f7bf1c3a0f1a863488806cfc045ab09d, type: 3}
       propertyPath: m_Name
       value: DamagingPlatform

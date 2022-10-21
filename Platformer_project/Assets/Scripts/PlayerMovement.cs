@@ -10,21 +10,26 @@ public class PlayerMovement : MonoBehaviour
     private bool isSlowed = false;
     [SerializeField] private float slowForce = 2;
 
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float maxMoveSpeed = 20;
+    private float acceleration;
+    private float deceleration;
+    private float accelerationRate = 100;
+    private float decelerationRate = 50;
+
     private bool jumpPressed;
     private bool againstLeftWall = false;
     private bool againstRightWall = false;
     private bool canDoubleJump = false;
 
-    [SerializeField] private float jumpForce = 10;
-    [SerializeField] private float gravity = -5f;
+    [SerializeField] private float jumpForce = 13;
+    [SerializeField] private float gravity = -18f;
     [SerializeField] private float velocity;
     [SerializeField] private float horizontalVelocity;
 
-    [SerializeField] private float dashForce = 3;
+    [SerializeField] private float dashForce = 5;
     private bool dashPressed;
 
-    [SerializeField] private float sprintMultiplier = 3;
+    [SerializeField] private float sprintMultiplier = 2;
     private bool sprintPressed;
 
     [SerializeField] private bool goDownPressed;
@@ -70,18 +75,23 @@ public class PlayerMovement : MonoBehaviour
         goDownPressed = value.isPressed;
     }
 
+    private void Start()
+    {
+        acceleration = maxMoveSpeed / accelerationRate;
+        deceleration = maxMoveSpeed / decelerationRate;
+    }
     private void FixedUpdate()
     {
         if (dashPressed)
         {
             CreateDust();
             Vector3 pre_pos = transform.position;
-            Vector3 dash = new Vector3(moveVal.x * dashForce, 0, 0) * moveSpeed * Time.deltaTime;
+            Vector3 dash = new Vector3(moveVal.x * dashForce, 0, 0) * maxMoveSpeed * Time.deltaTime;
             RaycastHit2D hit = Physics2D.Linecast(pre_pos, pre_pos + dash, LayerMask.GetMask("Collision"));
 
             if (hit.collider)
             {
-                transform.Translate(new Vector3(pre_pos.x - hit.collider.transform.position.x, 0, 0) * moveSpeed * Time.deltaTime);
+                transform.Translate(new Vector3(pre_pos.x - hit.collider.transform.position.x, 0, 0) * maxMoveSpeed * Time.deltaTime);
             }
             else
             {
@@ -95,20 +105,57 @@ public class PlayerMovement : MonoBehaviour
     {
         if ((againstLeftWall && moveVal.x > 0) || (againstRightWall && moveVal.x < 0) || (!againstRightWall && !againstLeftWall))
         {
-            if(sprintPressed)
+            // Non-linear horizontal movement
+            if (Mathf.Abs(horizontalVelocity) > maxMoveSpeed)
             {
-                horizontalVelocity = sprintMultiplier * moveSpeed;
+                horizontalVelocity = maxMoveSpeed * moveVal.x;
+            }
+            else if (moveVal.x < 0 && horizontalVelocity < maxMoveSpeed)
+            {
+                horizontalVelocity -= acceleration;
+            }
+            else if (moveVal.x > 0 && horizontalVelocity > -maxMoveSpeed)
+            {
+                horizontalVelocity += acceleration;
             }
             else
             {
-                horizontalVelocity = moveSpeed;
-                
+                if (horizontalVelocity > deceleration)
+                {
+                    horizontalVelocity -= deceleration;
+                }
+                else if (horizontalVelocity < -deceleration)
+                {
+                    horizontalVelocity += deceleration;
+                }
+                else
+                {
+                    horizontalVelocity = 0;
+                }
             }
-            if(isSlowed)
+            if (Mathf.Abs(horizontalVelocity) > maxMoveSpeed)
+            {
+                horizontalVelocity = maxMoveSpeed * moveVal.x;
+            }
+
+            if (sprintPressed)
+            {
+                horizontalVelocity = maxMoveSpeed * moveVal.x * sprintMultiplier;
+            }
+            else if (Mathf.Abs(horizontalVelocity) > maxMoveSpeed * sprintMultiplier)
+            {
+                horizontalVelocity = maxMoveSpeed / 2 * moveVal.x;
+            }
+
+            if (isSlowed)
             {
                 horizontalVelocity /= slowForce;
             }
-            transform.Translate(new Vector3(moveVal.x * horizontalVelocity, 0, 0) * Time.deltaTime);
+            transform.Translate(new Vector3(horizontalVelocity, 0, 0) * Time.deltaTime);
+        }
+        else
+        {
+            horizontalVelocity = 0;
         }
 
         if (jumpPressed)
