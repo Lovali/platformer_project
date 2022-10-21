@@ -40,6 +40,11 @@ public class PlayerMovement : MonoBehaviour
         pauseMenu.pausePressed = value.isPressed;
     }
 
+    void OnResume(InputValue value)
+    {
+        pauseMenu.pausePressed = value.isPressed;
+    }
+
     void OnMove(InputValue value)
     {
         moveVal = value.Get<Vector2>();

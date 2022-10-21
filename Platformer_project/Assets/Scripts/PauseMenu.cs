@@ -13,14 +13,7 @@ public class PauseMenu : MonoBehaviour
     {
         if(pausePressed)
         {
-            if(gameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
                 Paused();
-            }
         }
         if(controlsMenuUI.activeSelf)
         {
