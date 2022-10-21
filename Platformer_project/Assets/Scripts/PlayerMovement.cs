@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool isWallSliding = false;
     [SerializeField] private float wallSlidingSpeed = -5;
 
+    [SerializeField] private ParticleSystem dust;
+
     void OnPause(InputValue value)
     {
         pauseMenu.pausePressed = value.isPressed;
@@ -67,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (dashPressed)
         {
+            CreateDust();
             Vector3 pre_pos = transform.position;
             Vector3 dash = new Vector3(moveVal.x * dashForce, 0, 0) * moveSpeed * Time.deltaTime;
             RaycastHit2D hit = Physics2D.Linecast(pre_pos, pre_pos + dash, LayerMask.GetMask("Collision"));
@@ -105,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (jumpPressed)
         {
+            CreateDust();
             if (isOnTheGround)
             {
                 canDoubleJump = true;
@@ -221,5 +225,10 @@ public class PlayerMovement : MonoBehaviour
     private void Down()
     {
         traversablePlatformGameObject.GetComponent<Collider2D>().enabled = !traversablePlatformGameObject.GetComponent<Collider2D>().enabled;
+    }
+
+    private void CreateDust()
+    {
+        dust.Play();
     }
 }

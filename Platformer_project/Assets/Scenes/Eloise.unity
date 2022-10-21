@@ -141,6 +141,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 188242925946422260, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 188242925946422260, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 1976938414985526336, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -193,6 +201,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
+      propertyPath: dust
+      value: 
+      objectReference: {fileID: 716416938}
     - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
       propertyPath: gravity
       value: -18
@@ -280,6 +292,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28750058bc517fa4d81a806051b5e250, type: 3}
+--- !u!198 &716416938 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 188242925946422260, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
+  m_PrefabInstance: {fileID: 494766749}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1433021631 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1406005044, guid: acb1ddeb457543947a4a13e246088b8f, type: 3}
