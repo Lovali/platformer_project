@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.80093634, b: 0, a: 1}
+  m_Color: {r: 0.01934421, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -124,4 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b01bc60f4566cc4bb2bb5dc757a235e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 4287134683358039981, guid: acb1ddeb457543947a4a13e246088b8f, type: 3}
+  text: {fileID: 0}
+  eventSystem: {fileID: 0}
+  victoryCanvas: {fileID: 0}
+  mainMenuButton: {fileID: 0}
