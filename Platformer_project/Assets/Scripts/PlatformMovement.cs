@@ -26,7 +26,7 @@ public class PlatformMovement : MonoBehaviour
             }
             else
             {
-                transform.Translate(direction * Time.deltaTime * speed);
+                transform.Translate(speed * Time.deltaTime * direction);
             }
         }
         else

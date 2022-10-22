@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    private GameObject player;
     private PlayerHealth playerHealth;
     [SerializeField] int damage = 1;
 
     private void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
     }
 

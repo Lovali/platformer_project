@@ -4,32 +4,29 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] PauseMenu pauseMenu;
+    private PauseMenu pauseMenu;
 
     private Vector2 moveVal;
     private bool isOnTheGround = false;
-    private bool isSlowed = false;
-    [SerializeField] private float slowForce = 2;
 
     [SerializeField] private float maxMoveSpeed = 20;
     private float acceleration;
     private float deceleration;
-    private float accelerationRate = 100;
-    private float decelerationRate = 50;
+    [SerializeField] private float accelerationRate = 100;
+    [SerializeField] private float decelerationRate = 50;
 
     private bool jumpPressed;
     private bool againstLeftWall = false;
     private bool againstRightWall = false;
     private bool canDoubleJump = false;
-
     [SerializeField] private float jumpForce = 13;
     [SerializeField] private float maxJumpForce = 20;
     private float jumpBoosted;
     private float jumpBoostRate;
 
     [SerializeField] private float gravity = -18f;
-    [SerializeField] private float velocity;
-    [SerializeField] private float horizontalVelocity;
+    private float velocity;
+    private float horizontalVelocity;
 
     [SerializeField] private float dashForce = 5;
     private bool dashPressed;
@@ -37,15 +34,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float sprintMultiplier = 2;
     private bool sprintPressed;
 
-    [SerializeField] private bool goDownPressed;
+    private bool goDownPressed;
     private GameObject traversablePlatformGameObject;
 
-    [SerializeField] private bool isWallSliding = false;
+    private bool isWallSliding = false;
     [SerializeField] private float wallSlidingSpeed = -5;
+
+    private bool isSlowed = false;
+    [SerializeField] private float slowForce = 2;
 
     [SerializeField] private ParticleSystem dust;
     [SerializeField] private Slider jumpSlider;
 
+    // Methods related to new input system
     void OnPause(InputValue value)
     {
         pauseMenu.pausePressed = value.isPressed;
@@ -78,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        pauseMenu = GameObject.Find("GameManager").GetComponent<PauseMenu>();
         acceleration = maxMoveSpeed / accelerationRate;
         deceleration = maxMoveSpeed / decelerationRate;
         jumpBoosted = jumpForce;
@@ -223,34 +225,34 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "LeftWall")
+        if (collision.gameObject.CompareTag("LeftWall"))
         {
             againstLeftWall = true;
         }
-        if (collision.gameObject.tag == "RightWall")
+        if (collision.gameObject.CompareTag("RightWall"))
         {
             againstRightWall = true;
         }
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground"))
         {
             isOnTheGround = true;
             transform.parent = collision.gameObject.transform;
         }
-        if (collision.gameObject.tag == "Ceil")
+        if (collision.gameObject.CompareTag("Ceil"))
         {
             velocity = 0;
         }
-        if (collision.gameObject.tag == "Bouncing")
+        if (collision.gameObject.CompareTag("Bouncing"))
         {
             isOnTheGround = true;
             velocity = 12.5f;
         }
-        if (collision.gameObject.tag == "Slowing")
+        if (collision.gameObject.CompareTag("Slowing"))
         {
             isOnTheGround = true;
             isSlowed = true;
         }
-        if (collision.gameObject.tag == "Traversable")
+        if (collision.gameObject.CompareTag("Traversable"))
         {
             isOnTheGround = true;
         }

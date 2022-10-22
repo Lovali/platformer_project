@@ -4,8 +4,8 @@ using UnityEngine.EventSystems;
 
 public class PlayerHealth : MonoBehaviour
 {
-    int maxHealth = 3;
-    int currentHealth;
+    [SerializeField] private int maxHealth = 3;
+    private int currentHealth;
     [SerializeField] Text healthPointsText;
     [SerializeField] Text defeatText;
     [SerializeField] GameObject defeatCanvas;
