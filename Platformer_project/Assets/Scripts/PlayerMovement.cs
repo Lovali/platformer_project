@@ -242,10 +242,12 @@ public class PlayerMovement : MonoBehaviour
         }
         if (collision.gameObject.tag == "Bouncing")
         {
+            isOnTheGround = true;
             velocity = 12.5f;
         }
         if (collision.gameObject.tag == "Slowing")
         {
+            isOnTheGround = true;
             isSlowed = true;
         }
         if (collision.gameObject.tag == "Traversable")
@@ -272,8 +274,13 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Slowing"))
         {
             isSlowed = false;
+            isOnTheGround = false;
         }
         if (collision.gameObject.CompareTag("Traversable"))
+        {
+            isOnTheGround = false;
+        }
+        if (collision.gameObject.CompareTag("Bouncing"))
         {
             isOnTheGround = false;
         }
