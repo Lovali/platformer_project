@@ -170,6 +170,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 canDoubleJump = true;
                 jumpBoosted += jumpBoostRate;
+                jumpSlider.gameObject.SetActive(true);
                 jumpSlider.value = jumpBoosted;
                 if (jumpBoosted > maxJumpForce)
                 {
@@ -189,6 +190,7 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpBoosted = jumpForce;
             jumpSlider.value = jumpForce;
+            jumpSlider.gameObject.SetActive(false);
         }
 
         if ((againstLeftWall || againstRightWall) && !isOnTheGround)
