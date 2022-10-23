@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private PauseMenu pauseMenu;
 
-    private Vector2 moveVal;
+    [SerializeField] private Vector2 moveVal;
     private bool isOnTheGround = false;
 
     [SerializeField] private float maxMoveSpeed = 20;
@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if ((againstLeftWall && moveVal.x > 0) || (againstRightWall && moveVal.x < 0) || (!againstRightWall && !againstLeftWall))
+        if ((againstLeftWall && moveVal.x > 0) || (againstRightWall && moveVal.x < 0) || (!againstRightWall && !againstLeftWall && (moveVal.x >= 0.1f || moveVal.x <= -0.1f)))
         {
             // Non-linear horizontal movement
             if (Mathf.Abs(horizontalVelocity) > maxMoveSpeed)

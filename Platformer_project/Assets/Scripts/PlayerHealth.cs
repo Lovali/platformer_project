@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 3;
     private int currentHealth;
-    [SerializeField] Text healthPointsText;
+    [SerializeField] TextMeshProUGUI healthPointsText;
     [SerializeField] Text defeatText;
     [SerializeField] GameObject defeatCanvas;
     [SerializeField] EventSystem eventSystem;
