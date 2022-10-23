@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private PauseMenu pauseMenu;
 
-    [SerializeField] private Vector2 moveVal;
+    private Vector2 moveVal;
     private bool isOnTheGround = false;
 
     [SerializeField] private float maxMoveSpeed = 20;
@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float sprintMultiplier = 2;
     private bool sprintPressed;
+
+    [SerializeField] private float boucingPlatformValue = 13;
 
     private bool goDownPressed;
     private GameObject traversablePlatformGameObject;
@@ -245,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Bouncing"))
         {
             isOnTheGround = true;
-            velocity = 12.5f;
+            velocity = boucingPlatformValue;
         }
         if (collision.gameObject.CompareTag("Slowing"))
         {
