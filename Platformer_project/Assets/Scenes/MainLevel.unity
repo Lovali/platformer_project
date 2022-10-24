@@ -1681,7 +1681,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
       propertyPath: jumpForce
-      value: 12
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
       propertyPath: pauseMenu
@@ -1697,19 +1697,23 @@ PrefabInstance:
       objectReference: {fileID: 1766099173}
     - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
       propertyPath: maxJumpForce
-      value: 17
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
       propertyPath: maxMoveSpeed
-      value: 10
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
       propertyPath: accelerationRate
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
       propertyPath: decelerationRate
-      value: 30
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563110966437062017, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
+      propertyPath: sprintMultiplier
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8758127287085161555, guid: 210bac102ccfe0246bb6057e997cd819, type: 3}
       propertyPath: defeatText
@@ -1786,7 +1790,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10.726797
+  orthographic size: 11.771228
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
