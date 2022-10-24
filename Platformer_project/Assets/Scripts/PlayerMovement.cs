@@ -93,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (dashPressed)
         {
-            CreateDust();
+            if (FeedbackManager._instance.feedbackActivated && FeedbackManager._instance.dustActivated) CreateDust();
             Vector3 pre_pos = transform.position;
             Vector3 dash = new Vector3(moveVal.x * dashForce, 0, 0) * maxMoveSpeed * Time.deltaTime;
             RaycastHit2D hit = Physics2D.Linecast(pre_pos, pre_pos + dash, LayerMask.GetMask("Collision"));
@@ -169,12 +169,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (jumpPressed)
         {
-            CreateDust();
+            if (FeedbackManager._instance.feedbackActivated && FeedbackManager._instance.dustActivated) CreateDust();
             if (isOnTheGround)
             {
                 canDoubleJump = true;
                 jumpBoosted += jumpBoostRate;
-                jumpSlider.gameObject.SetActive(true);
+                if (FeedbackManager._instance.feedbackActivated && FeedbackManager._instance.jumpSliderActivated) jumpSlider.gameObject.SetActive(true);
                 jumpSlider.value = jumpBoosted;
                 if (jumpBoosted > maxJumpForce)
                 {

@@ -17,8 +17,11 @@ public class Damage : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerHealth.TakeDamage(damage);
-            ChangeColor();
-            Invoke(nameof(ChangeColor), 0.2f);
+            if (FeedbackManager._instance.feedbackActivated && FeedbackManager._instance.redColorWhenDamageActivated)
+            {
+                ChangeColor();
+                Invoke(nameof(ChangeColor), 0.2f);
+            }
         }
     }
 

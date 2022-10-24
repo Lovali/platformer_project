@@ -26,10 +26,10 @@ public class PlayerHealth : MonoBehaviour
         if(currentHealth <= 0)
         {
             currentHealth = 0;
-            Die();
+            if (FeedbackManager._instance.feedbackActivated && FeedbackManager._instance.gameOverActivated) Die();
         }
 
-        UpdateHealthUI();
+        if (FeedbackManager._instance.feedbackActivated && FeedbackManager._instance.healthPointsActivated) UpdateHealthUI();
     }
 
     private void UpdateHealthUI()

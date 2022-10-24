@@ -11,7 +11,7 @@ public class Victory : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && FeedbackManager._instance.feedbackActivated && FeedbackManager._instance.victoryActivated)
         {
             text.gameObject.SetActive(true);
             eventSystem.SetSelectedGameObject(mainMenuButton);
