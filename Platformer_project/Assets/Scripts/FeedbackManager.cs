@@ -14,6 +14,8 @@ public class FeedbackManager : MonoBehaviour
     public bool startTextActivated = true;
     public bool victoryActivated = true;
     public bool gameOverActivated = true;
+    public bool soundWhenHitActivated = true;
+    public bool soundVictoryActivated = true;
     [SerializeField] private Canvas canvas;
     [SerializeField] private GameObject healthCanvas;
     [SerializeField] private GameObject startText;

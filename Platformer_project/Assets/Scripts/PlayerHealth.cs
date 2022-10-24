@@ -12,16 +12,19 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] GameObject defeatCanvas;
     [SerializeField] EventSystem eventSystem;
     [SerializeField] GameObject mainMenuButton;
+    private AudioSource audioSource;
 
     void Start()
     {
         currentHealth = maxHealth;
+        audioSource = gameObject.GetComponent<AudioSource>();
         UpdateHealthUI();
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        if (FeedbackManager._instance.feedbackActivated && FeedbackManager._instance.soundWhenHitActivated) audioSource.Play();
         
         if(currentHealth <= 0)
         {
